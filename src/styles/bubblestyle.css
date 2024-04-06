@@ -1,0 +1,67 @@
+.speech-bubble {
+    position: relative;
+    display: block;
+    /* Colors */
+    background: #ffffff;
+    color: #333;
+    /* Borders  */
+    border-radius: .4em;
+    /* Padding and Margin */
+    padding: 0.3rem;
+    /* Width and Height */
+   width: 5.5rem;
+    height: 3rem;
+    /* Fonts  */
+    overflow: "hidden";
+    overflow-wrap: scroll;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 9px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+  
+  /* Add Icon */
+  .addBtn {
+    position: relative;
+    display: block;
+    background: #ffffff;
+    color: #a5a4a4;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 0px;
+    border-radius: 50%;
+    left: 1rem;
+    top:1rem;
+    cursor:pointer
+
+}
+
+  [data-arrow]::before {
+    content: '';
+    position: absolute;
+    display: block;
+    font-style: normal;
+    font-weight: normal;
+    width: 0;
+    height: 0;
+  }
+
+
+  [data-arrow="bottom-center"]::before {
+    top: 100%;
+    left: 60%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    border-top: 13px solid #ffffff;
+    border-right: calc(13px/4) solid transparent;
+    border-left: calc(13px/4) solid transparent;
+    
+  }
+  
+
+
+
