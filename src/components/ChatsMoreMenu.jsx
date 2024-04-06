@@ -8,24 +8,17 @@ import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import Tooltip from "@mui/material/Tooltip";
 import useDataCall from "../hooks/useDataCall";
-import { useSelector } from "react-redux";
 
 export default function AccountMenu({ item }) {
   const { deleteChat } = useDataCall();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const { chats } = useSelector((state) => state.appData);
-  const { userId } = useSelector((state) => state.auth);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const chat = chats?.filter(
-    (data) => data?.members.includes(userId) && data?.members.includes(item._id)
-  );
 
   return (
     <React.Fragment>
@@ -77,7 +70,7 @@ export default function AccountMenu({ item }) {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem onClick={() => deleteChat(chat[0]?._id)}>
+        <MenuItem onClick={() => deleteChat(item?.chat?._id)}>
           <ListItemIcon>
             <DeleteRoundedIcon fontSize="small" />
           </ListItemIcon>
@@ -87,7 +80,7 @@ export default function AccountMenu({ item }) {
           <ListItemIcon>
             <CancelRoundedIcon fontSize="small" />
           </ListItemIcon>
-          Cancel{" "}
+          Cancel
         </MenuItem>
       </Menu>
     </React.Fragment>

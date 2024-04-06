@@ -13,7 +13,6 @@ const Chats = () => {
   const { getChats, clearMessagesState, onlineUsers } = useDataCall();
   const { getMyContacts } = useAuthCall();
   const { chats } = useSelector((state) => state?.appData);
-  const { contacts } = useSelector((state) => state?.auth);
   const [display, setDisplay] = useState([]);
   const [changed, setChanged] = useState(true);
   const [searchData, setSearchData] = useState([]);
@@ -26,28 +25,17 @@ const Chats = () => {
   }, []);
 
 
-  // useEffect(() => {
-  //   const chatData = chats?.filter((item) => item?.show === true);
-  //   const filteredContacts = [];
-  //   contacts?.forEach((contact) => {
-  //     const contactId = contact?._id;
-  //     chatData.forEach((chat) => {
-  //       const members = chat?.members;
-  //       if (
-  //         members.includes(contactId) &&
-  //         !filteredContacts.some((c) => c._id === contactId)
-  //       ) {
-  //         filteredContacts.push(contact);
-  //       }
-  //     });
-  //   });
-  //   setDisplay(filteredContacts || []);
-  //   setSearchData(filteredContacts || []);
-  // }, [chats, contacts]);
+  console.log("chats", chats);
+
+  useEffect(() => {
+    const chatData = chats?.filter((item) => item?.chat?.show === true);   
+    setDisplay(chatData || []);
+    setSearchData(chatData||[])
+  }, [chats]);
 
   const setSearch = (e) => {
     const filterName = searchData?.filter((item) =>
-      item?.name?.toLowerCase()?.includes(e?.target?.value.toLowerCase())
+      item?.user?.name?.toLowerCase()?.includes(e?.target?.value.toLowerCase())
     );
     setDisplay(filterName);
   };
@@ -136,17 +124,17 @@ const Chats = () => {
             justifyContent: "center",
             alignItems: "center",
           }}
-          key={item?._id}
+          key={item?.user?._id}
         >
           <Box style={style} position={"relative"}>
             <img
-              src={item?.image}
+              src={item?.user?.image}
               style={{ width: "100%", height: "100%", borderRadius: "50%" }}
               alt="PP"
             />
             <FiberManualRecordRoundedIcon
               sx={
-                onlineUsers?.some((user) => user?.userId === item?._id)
+                onlineUsers?.some((user) => user?.userId === item?.user?._id)
                   ? online
                   : offline
               }
@@ -162,11 +150,11 @@ const Chats = () => {
           >
             <Box display={"flex"} justifyContent={"space-between"}>
               <Typography
-                onClick={() => forward(item?._id)}
+                onClick={() => forward(item?.user?._id)}
                 sx={{ minWidth: "95%", fontWeight: "700" }}
               >
-                {item?.name.charAt(0).toUpperCase() +
-                  item?.name.slice(1).toLowerCase()}
+                {item?.user?.name.charAt(0).toUpperCase() +
+                  item?.user?.name.slice(1).toLowerCase()}
               </Typography>
 
               <AccountMenu item={item} />
@@ -177,7 +165,7 @@ const Chats = () => {
                 sx={{ width: "100%", color: "#4b4e55" }}
                 display="flex"
                 justifyContent={"space-between"}
-                onClick={() => forward(item?._id)}
+                onClick={() => forward(item?.user?._id)}
               >
                 <Typography
                   sx={{

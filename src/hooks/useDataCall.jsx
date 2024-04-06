@@ -160,9 +160,8 @@ const [onlineUsers, setOnlineUsers] = useState([])
   const getChats = async () => {
     dispatch(fetchStart());
     try {
-      const  data  = await axiosWithToken("chats/findall");
-      // dispatch(getChatsSuccess({ data }));
-      console.log("getChats",data);
+      const  {data}  = await axiosWithToken("chats/findall");
+      dispatch(getChatsSuccess({ data }));
     } catch (error) {
       console.log(error);
       dispatch(fetchFail());
