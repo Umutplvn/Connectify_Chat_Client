@@ -25,7 +25,6 @@ const Chats = () => {
   }, []);
 
 
-  console.log("chats", chats);
 
   useEffect(() => {
     const chatData = chats?.filter((item) => item?.chat?.show === true);   

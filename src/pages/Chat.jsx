@@ -13,8 +13,8 @@ const Chat = () => {
   const { _id } = useParams();
   const [text, setText] = useState("");
   const [info, setInfo] = useState("");
-  const { createMessages, clearMessagesState, onlineUsers } = useDataCall();
-  const { chats } = useSelector((state) => state?.appData);
+  const { createMessages, clearMessagesState, onlineUsers, getMessages } = useDataCall();
+  const { chats, messages } = useSelector((state) => state?.appData);
   const { contacts, userId } = useSelector((state) => state?.auth);
   const user = contacts?.filter((item) => item?._id == _id);
   const navigate = useNavigate();
@@ -23,24 +23,27 @@ const Chat = () => {
     clearMessagesState();
     navigate(-1);
   };
+
+
   useEffect(() => {
     const chatNumber = chats?.filter(
-      (item) => item?.members?.includes(userId) && item?.members?.includes(_id)
+      (item) => item?.chat?.members?.includes(userId) && item?.chat?.members?.includes(_id)
     );
     if (chatNumber) {
+      getMessages(chatNumber[0]?.chat?._id)
     }
   }, []);
 
   const handleOnEnter = (text) => {
     const chatNumber = chats?.filter(
-      (item) => item?.members?.includes(userId) && item?.members?.includes(_id)
-    );
+      (item) =>item?.chat?.members?.includes(userId) && item?.chat?.members?.includes(_id)
+      );
     if (text.trim() !== "") {
       if (info.chatId) {
         createMessages({ chatId: info.chatId, messageId: info?._id, text });
         setInfo("");
       } else {
-        createMessages({ chatId: chatNumber[0]?._id, text: text });
+        createMessages({ chatId: chatNumber[0]?.chat?._id, text: text });
       }
     } else {
       console.log("Text is empty. No message created.");
@@ -98,7 +101,8 @@ const Chat = () => {
       </Box>
 
       {/* Messages */}
-      <Messages handleOnEnter={handleOnEnter} setInfo={setInfo} />
+
+      <Messages setInfo={setInfo} />
 
       {/* New Message */}
       <Box sx={{ position: "fixed", bottom: 0, width: "100%" }}>

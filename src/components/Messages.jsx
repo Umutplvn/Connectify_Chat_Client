@@ -14,15 +14,17 @@ const Messages = ({setInfo}) => {
   const { userId } = useSelector((state) => state?.auth);
   const scroll= useRef()
 
-  // useEffect(() => {
-  //   scroll?.current?.scrollIntoView({behavior:"smooth"})
-  //   const chatNumber = chats?.filter(
-  //     (item) => item?.members?.includes(userId) && item?.members?.includes(_id)
-  //   );
-  //   if(chatNumber){
-  //     getMessages(chatNumber[0]?._id);
-  //   }
-  // }, [messages]);
+  useEffect(() => {
+    scroll?.current?.scrollIntoView({behavior:"smooth"})
+    console.log("chats", chats);
+    // const chatNumber = chats?.filter(
+    //   (item) => item?.chat?.members?.includes(userId) && item?.chat?.members?.includes(_id)
+    // );
+    // if(chatNumber){
+    // getMessages(chatNumber[0]?.chat?._id)
+    //   }
+  }, [messages]);
+
 
   return (
     <Box sx={{ maxHeight: "75vh", overflow: "scroll" }}>
@@ -64,7 +66,7 @@ const Messages = ({setInfo}) => {
                         fontFamily:"Halvetica"
                       }}
                     >
-                      {item?.replyto?.sender?.name}
+                      {item?.replyto?.sender?._id==userId ? "You" :item?.replyto?.sender?.name}
                     </Typography>
                     <Typography
                       sx={{
@@ -162,7 +164,7 @@ const Messages = ({setInfo}) => {
                       lineHeight: "1",
                       marginBottom: "-0.6rem",
                       fontStyle: item?.sender?.name == null && item?.sender?.username==null && item?.sender?.email==null ? "italic" : "normal",
-                      color: item?.sender?.name == null && item?.sender?.username==null && item?.sender?.email==null ? "#7b7b7b" : "black", // item.sender boş ise italik yap
+                      color: item?.sender?.name == null && item?.sender?.username==null && item?.sender?.email==null ? "#7b7b7b" : "black", 
                     }}
                   >
                     {item?.text}

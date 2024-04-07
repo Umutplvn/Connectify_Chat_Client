@@ -172,8 +172,7 @@ const [onlineUsers, setOnlineUsers] = useState([])
   const createChat = async (info) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosWithToken.post(`chats/${info}`);
-      dispatch(getChatsSuccess({ data }));
+      await axiosWithToken.post(`chats/${info}`);
       getChats();
     } catch (error) {
       console.log(error);

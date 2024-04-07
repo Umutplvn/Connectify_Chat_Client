@@ -24,10 +24,12 @@ const People = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const navigate=useNavigate()
+
   useEffect(() => {
     getUsers();
     getMyContacts();
   }, []);
+
 
   const handleSearch = (e) => {
     const searchKeyword = e.target.value.toLowerCase();

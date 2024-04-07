@@ -55,7 +55,7 @@ export default function AccountMenu({ item, setInfo }) {
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <Tooltip title="Account settings">
-        {item.sender &&  <MoreHorizIcon
+        {item?.sender &&  <MoreHorizIcon
             onClick={handleClick}
             size="small"
             sx={{ ml: 0 }}
