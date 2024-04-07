@@ -9,19 +9,18 @@ import AccountMenu from "./MessagesMoreMenu";
 
 const Messages = ({setInfo}) => {
   const { _id } = useParams();
-  const { getMessages } = useDataCall();
+  const { readChatMessages } = useDataCall();
   const { messages, chats } = useSelector((state) => state?.appData);
   const { userId } = useSelector((state) => state?.auth);
   const scroll= useRef()
 
   useEffect(() => {
     scroll?.current?.scrollIntoView({behavior:"smooth"})
-    console.log("chats", chats);
     // const chatNumber = chats?.filter(
     //   (item) => item?.chat?.members?.includes(userId) && item?.chat?.members?.includes(_id)
     // );
     // if(chatNumber){
-    // getMessages(chatNumber[0]?.chat?._id)
+    // readChatMessages({chatId:chatNumber[0]?.chat?._id})
     //   }
   }, [messages]);
 

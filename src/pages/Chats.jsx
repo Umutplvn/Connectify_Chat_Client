@@ -10,7 +10,7 @@ import AccountMenu from "../components/ChatsMoreMenu";
 import FiberManualRecordRoundedIcon from "@mui/icons-material/FiberManualRecordRounded";
 
 const Chats = () => {
-  const { getChats, clearMessagesState, onlineUsers } = useDataCall();
+  const { getChats, clearMessagesState, onlineUsers, readChatMessages } = useDataCall();
   const { getMyContacts } = useAuthCall();
   const { chats } = useSelector((state) => state?.appData);
   const [display, setDisplay] = useState([]);
@@ -24,12 +24,10 @@ const Chats = () => {
     getMyContacts();
   }, []);
 
-
-
   useEffect(() => {
-    const chatData = chats?.filter((item) => item?.chat?.show === true);   
+    const chatData = chats?.filter((item) => item?.chat?.show === true);
     setDisplay(chatData || []);
-    setSearchData(chatData||[])
+    setSearchData(chatData || []);
   }, [chats]);
 
   const setSearch = (e) => {
@@ -38,9 +36,24 @@ const Chats = () => {
     );
     setDisplay(filterName);
   };
-
+console.log("chats", chats);
   const forward = (data) => {
     navigate(`/chat/${data}`);
+  };
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+
+    if (date.toDateString() === today.toDateString()) {
+      return "Today";
+    } else if (date.toDateString() === yesterday.toDateString()) {
+      return "Yesterday";
+    } else {
+      return date.toLocaleDateString();
+    }
   };
 
   const style = {
@@ -65,6 +78,20 @@ const Chats = () => {
     right: "-0.1rem",
     fontSize: "1rem",
     color: "#c4c4c4",
+  };
+
+  const newMessage = {
+    width: "1rem",
+    height: "1rem",
+    backgroundColor: "#0978F9",
+    borderRadius: "50%",
+    color: "white",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize:"0.7rem",
+    fontFamily:"sans-serif"
+    
   };
 
   return (
@@ -176,10 +203,14 @@ const Chats = () => {
                     whiteSpace: "nowrap",
                   }}
                 >
-                  {/*!!!!! Will be filled with real data !!!! */}
-                  Text Message
+                {item?.chat?.messages[0]?.text}
                 </Typography>
-                <Typography
+
+
+
+                {item?.chat?.count == 0
+                 ? (
+                  <Typography
                   sx={{
                     fontSize: "0.8rem",
                     color: "#323232dd",
@@ -191,8 +222,18 @@ const Chats = () => {
                   width={"25%"}
                   textAlign={"end"}
                 >
-                  DATE
-                </Typography>
+                  {formatDate(
+                    [...item.chat.messages]
+                      .sort(
+                        (a, b) =>
+                          new Date(b.createdAt) - new Date(a.createdAt)
+                      )
+                      .map((message) => message.createdAt)[0]
+                  )}
+                </Typography>                ) :
+                (
+                  <Box sx={newMessage}>{item?.chat?.count}</Box>
+                )}
               </Box>
             </Box>
           </Box>

@@ -193,6 +193,17 @@ const [onlineUsers, setOnlineUsers] = useState([])
     }
   };
 
+  const readChatMessages = async (chatId) => {
+    dispatch(fetchStart());
+    try {
+      await axiosWithToken.put(`chats/readchat`, chatId);
+    } catch (error) {
+      console.log(error);
+      dispatch(fetchFail());
+      toast(error);
+    }
+  };
+
   const deleteChat = async (chatId) => {
     dispatch(fetchStart());
     try {
@@ -298,7 +309,8 @@ const [onlineUsers, setOnlineUsers] = useState([])
     addReaction,
     favMessage,
     deleteMessage,
-    onlineUsers
+    onlineUsers,
+    readChatMessages
   };
 };
 
