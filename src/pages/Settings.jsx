@@ -14,7 +14,7 @@ import BasicModal from "../components/updatePP";
 const Settings = () => {
   const [openIndex, setOpenIndex] = useState(null);
   const { logout } = useAuthCall();
-  const { image, username } = useSelector((state) => state?.auth);
+  const { image } = useSelector((state) => state?.auth);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
 
@@ -36,30 +36,23 @@ const Settings = () => {
           Settings
         </Typography>
 
-<BasicModal setOpen={setOpen} open={open} image={image}/>
+        <BasicModal setOpen={setOpen} open={open} image={image} />
 
         <Box sx={ProfileBox}>
           <Box
             sx={{
               display: "flex",
               flexDirection: "column",
-              alignItems: "center", 
-              paddingTop:"0.5rem"
+              alignItems: "center",
+              paddingTop: "0.5rem",
             }}
             onClick={handleOpen}
-
           >
-
-            <Avatar sx={{ width: "4rem", height: "4rem" }} src={image}></Avatar>
+            <Avatar sx={{ width: "6rem", height: "6rem" }} src={image}></Avatar>
             <Typography sx={{ color: "#1776d6", fontSize: "0.8rem" }}>
               Edit
             </Typography>
           </Box>
-
-          {/* <Typography>
-            {username.charAt(0).toUpperCase() + username.slice(1).toLowerCase()}
-          </Typography> */}
-
         </Box>
 
         <Box sx={{ padding: "0.5rem" }}>

@@ -13,7 +13,7 @@ const Chats = () => {
   const { getChats, clearMessagesState, onlineUsers, readChatMessages } =
     useDataCall();
   const { getMyContacts } = useAuthCall();
-  const { chats, messages } = useSelector((state) => state?.appData);
+  const { chats } = useSelector((state) => state?.appData);
   const { userId } = useSelector((state) => state?.auth);
   const [display, setDisplay] = useState([]);
   const [changed, setChanged] = useState(true);

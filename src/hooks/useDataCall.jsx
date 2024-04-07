@@ -284,7 +284,7 @@ const [onlineUsers, setOnlineUsers] = useState([])
     try {
       const { data } = await axiosWithToken.put(`messages/removefav`, messageId);
       dispatch(favMessagesStateSuccess({ data }));
-      toast("Message removed from favorites.");
+      toast("The message has been removed from favorites.");
     } catch (error) {
       console.log(error);
       dispatch(fetchFail());

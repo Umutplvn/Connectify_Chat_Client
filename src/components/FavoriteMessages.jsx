@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import { MessageBox } from "react-chat-elements";
 import useDataCall from "../hooks/useDataCall";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+import StarRoundedIcon from '@mui/icons-material/StarRounded';
 
 const FavoriteMessages = ({ handleToggle, openIndex }) => {
   const { getUser, removeFavMessage } = useDataCall();
@@ -26,6 +27,9 @@ const FavoriteMessages = ({ handleToggle, openIndex }) => {
   const removeFav = (item) => {
     removeFavMessage({messageId:item.info._id})
   };
+
+
+  console.log("fav Mesagges", favMessages);
 
   return (
     <Card
@@ -92,13 +96,21 @@ const FavoriteMessages = ({ handleToggle, openIndex }) => {
       >
         <Collapse in={openIndex === 2} timeout="auto" unmountOnExit>
           <CardContent>
+
             <Container
               sx={{
                 height: 100,
                 lineHeight: 2,
               }}
             >
-              {favMessages?.map((item, index) => (
+              
+              {favMessages.length ==0 ? <Box sx={{width:"100%", height:"100%", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center" }}>
+                 <StarRoundedIcon sx={{fontSize:"2.5rem", color:"#aaa9a9"}}/>
+                 <Typography sx={{fontWeight:"600"}}>No favorite messages to display.</Typography>
+
+                  </Box>
+                 
+                 :  favMessages?.map((item, index) => (
                 <Box
                   key={index}
                   style={{
