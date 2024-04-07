@@ -15,7 +15,7 @@ import useDataCall from "../hooks/useDataCall";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 
 const FavoriteMessages = ({ handleToggle, openIndex }) => {
-  const { getUser, favMessage } = useDataCall();
+  const { getUser, removeFavMessage } = useDataCall();
   const { favMessages } = useSelector((state) => state?.appData);
   const { userId } = useSelector((state) => state?.auth);
 
@@ -24,7 +24,7 @@ const FavoriteMessages = ({ handleToggle, openIndex }) => {
   }, []);
 
   const removeFav = (item) => {
-    favMessage(item)
+    removeFavMessage({messageId:item.info._id})
   };
 
   return (

@@ -45,14 +45,12 @@ const Chats = () => {
       (item) => item?.chat?.members?.includes(userId) && item?.chat?.members?.includes(data)
     );
     if(chatNumber){
-      console.log(chatNumber);
     readChatMessages({chatId:chatNumber[0]?.chat?._id})
       }
 
     navigate(`/chat/${data}`);
   };
 
-  console.log("chats", chats);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);

@@ -20,7 +20,6 @@ const Notes = () => {
     getNotes();
   }, []);
 
-  console.log(image);
   
 
   const cancelStyle = {

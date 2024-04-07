@@ -279,6 +279,19 @@ const [onlineUsers, setOnlineUsers] = useState([])
     }
   };
 
+  const removeFavMessage = async (messageId) => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axiosWithToken.put(`messages/removefav`, messageId);
+      dispatch(favMessagesStateSuccess({ data }));
+      toast("Message removed from favorites.");
+    } catch (error) {
+      console.log(error);
+      dispatch(fetchFail());
+      toast(error);
+    }
+  };
+
   const deleteMessage = async (info) => {
     dispatch(fetchStart());
     try {
@@ -311,7 +324,8 @@ const [onlineUsers, setOnlineUsers] = useState([])
     favMessage,
     deleteMessage,
     onlineUsers,
-    readChatMessages
+    readChatMessages,
+    removeFavMessage
   };
 };
 
