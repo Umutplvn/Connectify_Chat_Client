@@ -12,17 +12,20 @@ import StarsRoundedIcon from "@mui/icons-material/StarsRounded";
 import { useSelector } from "react-redux";
 import { MessageBox } from "react-chat-elements";
 import useDataCall from "../hooks/useDataCall";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 
 const FavoriteMessages = ({ handleToggle, openIndex }) => {
-  const {getUser}=useDataCall()
-  const {favMessages}=useSelector((state)=>state?.appData)
-  const {userId}=useSelector((state)=>state?.auth)
+  const { getUser, favMessage } = useDataCall();
+  const { favMessages } = useSelector((state) => state?.appData);
+  const { userId } = useSelector((state) => state?.auth);
 
   useEffect(() => {
-    getUser(userId)
-  }, [])
+    getUser(userId);
+  }, []);
 
-console.log("favMessages",favMessages);
+  const removeFav = (item) => {
+    favMessage(item)
+  };
 
   return (
     <Card
@@ -84,150 +87,225 @@ console.log("favMessages",favMessages);
       <Box
         sx={{
           backgroundColor: "rgba(211,211,211,0.4)",
-          overflow:"scroll",
+          overflow: "scroll",
         }}
       >
-        <Collapse in={openIndex === 2} timeout="auto" unmountOnExit >
-          <CardContent >
+        <Collapse in={openIndex === 2} timeout="auto" unmountOnExit>
+          <CardContent>
             <Container
               sx={{
                 height: 100,
                 lineHeight: 2,
-
               }}
             >
+              {favMessages?.map((item, index) => (
+                <Box
+                  key={index}
+                  style={{
+                    width: "100%",
+                    margin: "0.3rem auto",
+                    position: "relative",
+                  }}
+                >
+                  {item?.info?.replyto ? (
+                    <MessageBox
+                      position={
+                        item?.info?.sender?._id === userId ? "right" : "left"
+                      }
+                      type={"text"}
+                      text={
+                        <Box>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              justifyContent: "end",
+                            }}
+                          >
+                            <Box
+                              sx={{
+                                width: "100%",
+                                display: "flex",
+                                justifyContent:
+                                  item?.info?.sender?._id == userId
+                                    ? "start"
+                                    : "end",
+                                position: "relative",
+                              }}
+                            >
+                              <CancelOutlinedIcon
+                                sx={{
+                                  position: "absolute",
+                                  top: "-0.1rem",
+                                  transform:
+                                    item?.info?.sender?._id !== userId
+                                      ? "translateX(1rem) translateY(-0.5rem)"
+                                      : "translateX(-1rem) translateY(-0.5rem)",
+                                  color: "#d32828",
+                                  backgroundColor: "white",
+                                  borderRadius: "50%",
+                                  padding: "0.2rem",
+                                  fontSize: "1.5rem",
+                                }}
+                                onClick={() => removeFav(item)}
+                              />
+                            </Box>
+                          </Box>
 
-      {favMessages?.map((item, index) => (
-        <Box key={index} style={{ width: "100%", margin: "0.3rem auto" }}>
-             
-    {item?.info?.replyto?
-      <MessageBox
-      position={item?.info?.sender?._id === userId ? "right" : "left"}
-      type={"text"}
-        text={
-          <Box>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "end",
-              }}
-            >
-            </Box>
+                          {/* reply to*/}
+                          <Box
+                            sx={{
+                              backgroundColor: "white",
+                              borderRadius: "0.4rem",
+                              padding: "0.4rem",
+                              borderLeft: "0.4rem solid #63a44d",
+                            }}
+                          >
+                            <Typography
+                              sx={{
+                                fontSize: "0.9rem",
+                                fontFamily: "Halvetica",
+                                fontWeight: "900",
+                                color: "#63a44d",
+                              }}
+                            >
+                              {item?.info?.replyto?.sender?._id == userId
+                                ? "You"
+                                : item?.info?.replyto?.sender?.name
+                                    ?.charAt(0)
+                                    .toUpperCase() +
+                                  item?.info?.replyto?.sender?.name
+                                    ?.slice(1)
+                                    .toLowerCase()}
+                            </Typography>
+                            <Typography
+                              sx={{
+                                fontSize: "0.9rem",
+                                fontFamily: "Halvetica",
+                              }}
+                            >
+                              {item?.info?.replyto?.text}
+                            </Typography>
+                          </Box>
 
-            {/* reply to*/}
-            <Box
-              sx={{
-                backgroundColor: "white",
-                borderRadius: "0.4rem",
-                padding: "0.4rem",
-                borderLeft:"0.4rem solid #63a44d"
-              }}
-            >
-              <Typography
-                sx={{
-                  fontSize: "0.9rem",
-                  fontFamily: "Halvetica",
-                  fontWeight: "900",
-                  color: "#63a44d",
+                          <Typography
+                            sx={{
+                              fontSize: "0.9rem",
+                              fontFamily: "halvetica",
+                              mt: "0.3rem",
+                              mb: "-2rem",
+                              fontFamily: "Halvetica",
+                            }}
+                          >
+                            {item?.info?.text}
+                          </Typography>
+                        </Box>
+                      }
+                      date={item?.info?.createdAt}
+                      styles={{
+                        background:
+                          item?.info?.sender?._id === userId
+                            ? "linear-gradient(to top right, #D9FDD3, #fff"
+                            : "white",
+                        maxWidth: "80%",
+                      }}
+                    />
+                  ) : (
+                    <MessageBox
+                      position={
+                        item?.info?.sender?._id === userId ? "right" : "left"
+                      }
+                      type={"text"}
+                      styles={
+                        item?.info?.sender?._id === userId
+                          ? {
+                              background:
+                                "linear-gradient(to top right, #D9FDD3, #fff",
+                              maxWidth: "80%",
+                            }
+                          : {
+                              maxWidth: "80%",
+                            }
+                      }
+                      text={
+                        <Box
+                          sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            position: "relative",
+                            mb: "-2rem",
+                          }}
+                        >
+                          <Box
+                            sx={{
+                              width: "100%",
+                              display: "flex",
+                              justifyContent:
+                                item?.info?.sender?._id == userId
+                                  ? "start"
+                                  : "end",
+                              position: "relative",
+                            }}
+                          >
+                            <CancelOutlinedIcon
+                              sx={{
+                                position: "absolute",
+                                top: "-0.1rem",
+                                transform:
+                                  item?.info?.sender?._id !== userId
+                                    ? "translateX(1rem) translateY(-0.5rem)"
+                                    : "translateX(-1rem) translateY(-0.5rem)",
+                                color: "#d32828",
+                                backgroundColor: "white",
+                                borderRadius: "50%",
+                                padding: "0.2rem",
+                                fontSize: "1.5rem",
+                              }}
+                              onClick={() => removeFav(item)}
+                            />
+                          </Box>
 
-                }}
-              >
-                {item?.info?.replyto?.sender?.name}
-              </Typography>
-              <Typography
-                sx={{
-                  fontSize: "0.9rem",
-                  fontFamily: "Halvetica",
-                }}
-              >
-                {item?.info?.replyto?.text}
-              </Typography>
-            </Box>
-
-            <Typography
-              sx={{
-                fontSize: "0.9rem",
-                fontFamily: "halvetica",
-                mt: "0.3rem",
-                mb:"-2rem",
-                fontFamily: "Halvetica",
-
-              }}
-            >
-              {item?.info?.text}
-            </Typography>
-          </Box>
-        }
-        date={item?.info?.createdAt}
-        styles={{
-          background: item?.info?.sender?._id === userId ? 
-          "linear-gradient(to top right, #D9FDD3, #fff": "white",
-          maxWidth: "80%",
-        }}
-      />
-    :
-    
-    <MessageBox
-    position={item?.info?.sender?._id === userId ? "right" : "left"}
-    type={"text"}
-    styles={
-      item?.info?.sender?._id === userId
-        ? {
-          background: "linear-gradient(to top right, #D9FDD3, #fff",
-          maxWidth: "80%",
-          }
-        : {
-            maxWidth: "80%",
-
-          }
-    }
-    text={
-      <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        position: "relative",
-        mb: "-2rem",
-      }}
-    >
-      <Box sx={{ position: "relative" }}>
-      <Typography
-                sx={{
-                  fontSize: "0.9rem",
-                  fontFamily: "Halvetica",
-                  fontWeight: "900",
-                  color: "#63a44d",
-
-                }}
-              >
-                {item?.info?.sender?.name.charAt(0).toUpperCase() + item?.info?.sender?.name.slice(1).toLowerCase()}
-              </Typography>
-        <Typography
-          sx={{
-            fontSize: "0.9rem",
-            lineHeight: "1",
-            fontFamily: "Halvetica",
-          }}
-        >
-          {item?.info?.text}
-        </Typography>
-      </Box>
-    </Box>
-    
-    }
-    date={item?.info?.createdAt}
-    data={{
-      status: {
-        click: false,
-        loading: 0,
-      },
-    }}
-  />
-    }
-        </Box>
-      ))}
-
- </Container>
+                          <Box sx={{ position: "relative", mt:"0.5rem" }}>
+                            <Typography
+                              sx={{
+                                fontSize: "0.9rem",
+                                fontFamily: "Halvetica",
+                                fontWeight: "900",
+                                color: "#63a44d",
+                              }}
+                            >
+                              {item?.info?.sender?._id == userId
+                                ? "You"
+                                : item?.info?.sender?.name
+                                    ?.charAt(0)
+                                    .toUpperCase() +
+                                  item?.info?.sender?.name
+                                    ?.slice(1)
+                                    .toLowerCase()}
+                            </Typography>
+                            <Typography
+                              sx={{
+                                fontSize: "0.9rem",
+                                lineHeight: "1",
+                                fontFamily: "Halvetica",
+                              }}
+                            >
+                              {item?.info?.text}
+                            </Typography>
+                          </Box>
+                        </Box>
+                      }
+                      date={item?.info?.createdAt}
+                      data={{
+                        status: {
+                          click: false,
+                          loading: 0,
+                        },
+                      }}
+                    />
+                  )}
+                </Box>
+              ))}
+            </Container>
           </CardContent>
         </Collapse>
       </Box>

@@ -135,7 +135,8 @@ const Chat = () => {
                 color: "#63a44d",
               }}
             >
-              {info?.sender?.name}
+              {info?.sender?.name?.charAt(0).toUpperCase() +
+                info?.sender?.name?.slice(1).toLowerCase()}
             </Typography>
             <Typography
               sx={{
@@ -143,7 +144,7 @@ const Chat = () => {
                 fontFamily: "halvetica",
               }}
             >
-              {info.text}
+              {info?.text}
             </Typography>
           </Box>
         )}

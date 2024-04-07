@@ -7,35 +7,36 @@ import { MessageBox } from "react-chat-elements";
 import "react-chat-elements/dist/main.css";
 import AccountMenu from "./MessagesMoreMenu";
 
-const Messages = ({setInfo}) => {
+const Messages = ({ setInfo }) => {
   const { _id } = useParams();
-  const {getMessages}=useDataCall()
+  const { getMessages } = useDataCall();
   const { messages, chats } = useSelector((state) => state?.appData);
   const { userId } = useSelector((state) => state?.auth);
-  const scroll= useRef()
+  const scroll = useRef();
 
   useEffect(() => {
-    scroll?.current?.scrollIntoView({behavior:"smooth"})
+    scroll?.current?.scrollIntoView({ behavior: "smooth" });
     const chatNumber = chats?.filter(
-      (item) => item?.chat?.members?.includes(userId) && item?.chat?.members?.includes(_id)
+      (item) =>
+        item?.chat?.members?.includes(userId) &&
+        item?.chat?.members?.includes(_id)
     );
     if (chatNumber) {
-      getMessages(chatNumber[0]?.chat?._id)
+      getMessages(chatNumber[0]?.chat?._id);
     }
   }, []);
-
 
   return (
     <Box sx={{ maxHeight: "75vh", overflow: "scroll" }}>
       {messages?.map((item, index) => (
-        <Box key={index} style={{ width: "100%", margin: "0.1rem auto", position:"relative" }} ref={scroll}>
-         
-         
+        <Box
+          key={index}
+          style={{ width: "100%", margin: "0.1rem auto", position: "relative" }}
+          ref={scroll}
+        >
           {item?.replyto ? (
             <MessageBox
-              position={  item?.sender?._id === userId
-                  ? "right"
-                  : "left"}
+              position={item?.sender?._id === userId ? "right" : "left"}
               type={"text"}
               text={
                 <Box>
@@ -52,8 +53,8 @@ const Messages = ({setInfo}) => {
                     sx={{
                       borderRadius: "0.4rem",
                       padding: "0.4rem",
-                      borderLeft:"0.4rem solid #63a44d",
-                      backgroundColor:"white"
+                      borderLeft: "0.4rem solid #63a44d",
+                      backgroundColor: "white",
                     }}
                   >
                     <Typography
@@ -62,16 +63,18 @@ const Messages = ({setInfo}) => {
                         fontFamily: "halvetica",
                         fontWeight: "900",
                         color: "#63a44d",
-                        fontFamily:"Halvetica"
+                        fontFamily: "Halvetica",
                       }}
                     >
-                      {item?.replyto?.sender?._id==userId ? "You" :item?.replyto?.sender?.name.charAt(0).toUpperCase() + item?.replyto?.sender?.name.slice(1).toLowerCase()
-}
+                      {item?.replyto?.sender?._id == userId
+                        ? "You"
+                        : item?.replyto?.sender?.name.charAt(0).toUpperCase() +
+                          item?.replyto?.sender?.name.slice(1).toLowerCase()}
                     </Typography>
                     <Typography
                       sx={{
                         fontSize: "0.9rem",
-                        fontFamily:"Halvetica"
+                        fontFamily: "Halvetica",
                       }}
                     >
                       {item?.replyto?.text}
@@ -83,51 +86,45 @@ const Messages = ({setInfo}) => {
                       fontSize: "0.9rem",
                       fontFamily: "halvetica",
                       mt: "0.3rem",
-                      mb:"-1rem"
+                      mb: "-1rem",
                     }}
                   >
                     {item?.text}
                   </Typography>
-                  
-                   {item?.reaction&&
+
+                  {item?.reaction && (
                     <Typography
-                    sx={{
-                      position: "absolute",
-                      bottom: "-0.7rem",
-                      backgroundColor: "#fff",
-                      borderRadius: "50%",
-                      width: "1.5rem",
-                      height: "1.5rem",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "end",
-                      fontSize: "0.8rem",
-                      border:"0.5px solid #edebeb"
-                    }}
-                  >
-                    {item?.reaction}
-                  </Typography>}
-
-
+                      sx={{
+                        position: "absolute",
+                        bottom: "-0.7rem",
+                        backgroundColor: "#fff",
+                        borderRadius: "50%",
+                        width: "1.5rem",
+                        height: "1.5rem",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "end",
+                        fontSize: "0.8rem",
+                        border: "0.5px solid #edebeb",
+                      }}
+                    >
+                      {item?.reaction}
+                    </Typography>
+                  )}
                 </Box>
               }
               date={item?.createdAt}
               styles={{
-                background: item?.sender?._id == userId ?"linear-gradient(to top right, #D9FDD3, #fff" :"white" ,
+                background:
+                  item?.sender?._id == userId
+                    ? "linear-gradient(to top right, #D9FDD3, #fff"
+                    : "white",
                 maxWidth: "80%",
               }}
             />
-          ) 
-          
-          
-          
-          : (
+          ) : (
             <MessageBox
-              position={
-                item?.sender?._id === userId
-                  ? "right"
-                  : "left"
-              }
+              position={item?.sender?._id === userId ? "right" : "left"}
               type={"text"}
               styles={
                 item?.sender?._id == userId
@@ -153,8 +150,13 @@ const Messages = ({setInfo}) => {
                       justifyContent: "end",
                     }}
                   >
-                    {item?.sender?.name == null && item?.sender?.username==null && item?.sender?.email==null? "":  <AccountMenu item={item} setInfo={setInfo} />}
-                  
+                    {item?.sender?.name == null &&
+                    item?.sender?.username == null &&
+                    item?.sender?.email == null ? (
+                      ""
+                    ) : (
+                      <AccountMenu item={item} setInfo={setInfo} />
+                    )}
                   </Box>
 
                   <Typography
@@ -163,8 +165,18 @@ const Messages = ({setInfo}) => {
                       fontFamily: "halvetica",
                       lineHeight: "1",
                       marginBottom: "-0.6rem",
-                      fontStyle: item?.sender?.name == null && item?.sender?.username==null && item?.sender?.email==null ? "italic" : "normal",
-                      color: item?.sender?.name == null && item?.sender?.username==null && item?.sender?.email==null ? "#7b7b7b" : "black", 
+                      fontStyle:
+                        item?.sender?.name == null &&
+                        item?.sender?.username == null &&
+                        item?.sender?.email == null
+                          ? "italic"
+                          : "normal",
+                      color:
+                        item?.sender?.name == null &&
+                        item?.sender?.username == null &&
+                        item?.sender?.email == null
+                          ? "#7b7b7b"
+                          : "black",
                     }}
                   >
                     {item?.text}
@@ -182,7 +194,7 @@ const Messages = ({setInfo}) => {
                         justifyContent: "center",
                         alignItems: "end",
                         fontSize: "0.8rem",
-                        border:"0.5px solid #edebeb"
+                        border: "0.5px solid #edebeb",
                       }}
                     >
                       {item?.reaction}
@@ -190,7 +202,13 @@ const Messages = ({setInfo}) => {
                   )}
                 </Box>
               }
-              date={item?.sender?.name == null && item?.sender?.username==null && item?.sender?.email==null? "":item?.createdAt}
+              date={
+                item?.sender?.name == null &&
+                item?.sender?.username == null &&
+                item?.sender?.email == null
+                  ? ""
+                  : item?.createdAt
+              }
               data={{
                 status: {
                   click: false,
