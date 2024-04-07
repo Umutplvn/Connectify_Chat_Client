@@ -14,7 +14,7 @@ const Chat = () => {
   const [text, setText] = useState("");
   const [info, setInfo] = useState("");
   const { createMessages, clearMessagesState, onlineUsers, getMessages } = useDataCall();
-  const { chats, messages } = useSelector((state) => state?.appData);
+  const { chats } = useSelector((state) => state?.appData);
   const { contacts, userId } = useSelector((state) => state?.auth);
   const user = contacts?.filter((item) => item?._id == _id);
   const navigate = useNavigate();
