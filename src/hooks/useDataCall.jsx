@@ -197,6 +197,7 @@ const [onlineUsers, setOnlineUsers] = useState([])
     dispatch(fetchStart());
     try {
       await axiosWithToken.put(`chats/readchat`, chatId);
+      getChats(chatId)
     } catch (error) {
       console.log(error);
       dispatch(fetchFail());

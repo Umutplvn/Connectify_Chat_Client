@@ -9,15 +9,20 @@ import AccountMenu from "./MessagesMoreMenu";
 
 const Messages = ({setInfo}) => {
   const { _id } = useParams();
-  const { readChatMessages } = useDataCall();
+  const {getMessages}=useDataCall()
   const { messages, chats } = useSelector((state) => state?.appData);
   const { userId } = useSelector((state) => state?.auth);
   const scroll= useRef()
 
   useEffect(() => {
     scroll?.current?.scrollIntoView({behavior:"smooth"})
-   
-  }, [messages]);
+    const chatNumber = chats?.filter(
+      (item) => item?.chat?.members?.includes(userId) && item?.chat?.members?.includes(_id)
+    );
+    if (chatNumber) {
+      getMessages(chatNumber[0]?.chat?._id)
+    }
+  }, []);
 
 
   return (
@@ -60,7 +65,8 @@ const Messages = ({setInfo}) => {
                         fontFamily:"Halvetica"
                       }}
                     >
-                      {item?.replyto?.sender?._id==userId ? "You" :item?.replyto?.sender?.name}
+                      {item?.replyto?.sender?._id==userId ? "You" :item?.replyto?.sender?.name.charAt(0).toUpperCase() + item?.replyto?.sender?.name.slice(1).toLowerCase()
+}
                     </Typography>
                     <Typography
                       sx={{

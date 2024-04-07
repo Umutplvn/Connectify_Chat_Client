@@ -22,7 +22,7 @@ const FavoriteMessages = ({ handleToggle, openIndex }) => {
     getUser(userId)
   }, [])
 
-console.log(favMessages);
+console.log("favMessages",favMessages);
 
   return (
     <Card
@@ -191,6 +191,17 @@ console.log(favMessages);
       }}
     >
       <Box sx={{ position: "relative" }}>
+      <Typography
+                sx={{
+                  fontSize: "0.9rem",
+                  fontFamily: "Halvetica",
+                  fontWeight: "900",
+                  color: "#63a44d",
+
+                }}
+              >
+                {item?.info?.sender?.name.charAt(0).toUpperCase() + item?.info?.sender?.name.slice(1).toLowerCase()}
+              </Typography>
         <Typography
           sx={{
             fontSize: "0.9rem",

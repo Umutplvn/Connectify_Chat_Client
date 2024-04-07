@@ -60,6 +60,7 @@ const Footer = () => {
       position="fixed"
       bottom="0"
       width={"100%"}
+      zIndex={3}
       justifyContent="center"
       sx={{
         borderTop: "solid 0.5px #a6a9ab",
