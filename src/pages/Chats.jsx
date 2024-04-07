@@ -10,9 +10,11 @@ import AccountMenu from "../components/ChatsMoreMenu";
 import FiberManualRecordRoundedIcon from "@mui/icons-material/FiberManualRecordRounded";
 
 const Chats = () => {
-  const { getChats, clearMessagesState, onlineUsers, readChatMessages } = useDataCall();
+  const { getChats, clearMessagesState, onlineUsers, readChatMessages } =
+    useDataCall();
   const { getMyContacts } = useAuthCall();
-  const { chats } = useSelector((state) => state?.appData);
+  const { chats, messages } = useSelector((state) => state?.appData);
+  const { userId } = useSelector((state) => state?.auth);
   const [display, setDisplay] = useState([]);
   const [changed, setChanged] = useState(true);
   const [searchData, setSearchData] = useState([]);
@@ -36,10 +38,20 @@ const Chats = () => {
     );
     setDisplay(filterName);
   };
-console.log("chats", chats);
+
   const forward = (data) => {
+
+    const chatNumber = chats?.filter(
+      (item) => item?.chat?.members?.includes(userId) && item?.chat?.members?.includes(data)
+    );
+    if(chatNumber){
+    readChatMessages({chatId:chatNumber[0]?.chat?._id})
+      }
+
     navigate(`/chat/${data}`);
   };
+
+  console.log("chats", chats);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -89,9 +101,8 @@ console.log("chats", chats);
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    fontSize:"0.7rem",
-    fontFamily:"sans-serif"
-    
+    fontSize: "0.7rem",
+    fontFamily: "sans-serif",
   };
 
   return (
@@ -203,36 +214,27 @@ console.log("chats", chats);
                     whiteSpace: "nowrap",
                   }}
                 >
-                {item?.chat?.messages[0]?.text}
+                  {item?.chat?.lastMessage?.text}
                 </Typography>
 
-
-
-                {item?.chat?.count == 0
-                 ? (
-                  <Typography
-                  sx={{
-                    fontSize: "0.8rem",
-                    color: "#323232dd",
-                    width: "75%",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                  }}
-                  width={"25%"}
-                  textAlign={"end"}
-                >
-                  {formatDate(
-                    [...item.chat.messages]
-                      .sort(
-                        (a, b) =>
-                          new Date(b.createdAt) - new Date(a.createdAt)
-                      )
-                      .map((message) => message.createdAt)[0]
-                  )}
-                </Typography>                ) :
+                {(item?.chat?.messages.filter((item)=>item!==userId)).length == 0 ?
                 (
-                  <Box sx={newMessage}>{item?.chat?.count}</Box>
+                  <Typography
+                    sx={{
+                      fontSize: "0.8rem",
+                      color: "#323232dd",
+                      width: "75%",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                    }}
+                    width={"25%"}
+                    textAlign={"end"}
+                  >
+                    {formatDate(item.chat.lastMessage.createdAt)}
+                  </Typography>
+                ) : (
+                  <Box sx={newMessage}>{item?.chat?.messages.filter((data)=>data!==userId).length}</Box>
                 )}
               </Box>
             </Box>

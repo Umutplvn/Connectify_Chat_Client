@@ -16,12 +16,7 @@ const Messages = ({setInfo}) => {
 
   useEffect(() => {
     scroll?.current?.scrollIntoView({behavior:"smooth"})
-    // const chatNumber = chats?.filter(
-    //   (item) => item?.chat?.members?.includes(userId) && item?.chat?.members?.includes(_id)
-    // );
-    // if(chatNumber){
-    // readChatMessages({chatId:chatNumber[0]?.chat?._id})
-    //   }
+   
   }, [messages]);
 
 
