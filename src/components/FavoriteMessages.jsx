@@ -42,8 +42,8 @@ const FavoriteMessages = ({ handleToggle, openIndex }) => {
         title={
           <React.Fragment>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-              <StarsRoundedIcon sx={{ fontSize: "2rem", color: "#d8d52b" }} />
-              <Typography sx={{ fontSize: "1.2rem" }}>
+              <StarsRoundedIcon sx={{ fontSize: "1.9rem", color: "#d8d52b" }} />
+              <Typography sx={{ fontSize: "1rem" }}>
                 Favorite Messages
               </Typography>
             </Box>

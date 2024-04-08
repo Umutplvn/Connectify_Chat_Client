@@ -117,6 +117,7 @@ const Register = () => {
                 InputLabelProps={{
                   style: { color: "black" },
                 }}
+                disabled={loading}
               />
             </Box>
 
@@ -133,6 +134,8 @@ const Register = () => {
                 InputLabelProps={{
                   style: { color: "black" },
                 }}
+                disabled={loading}
+
               />
             </Box>
 
@@ -149,6 +152,8 @@ const Register = () => {
                 InputLabelProps={{
                   style: { color: "black" },
                 }}
+                disabled={loading}
+
               />
             </Box>
             <Box sx={{ mb: "1rem" }}>
@@ -164,6 +169,8 @@ const Register = () => {
                 InputLabelProps={{
                   style: { color: "black" },
                 }}
+                disabled={loading}
+
               />
               <Box sx={{ width: "100%" }}>
                 <PasswordStrengthBar
@@ -184,7 +191,8 @@ const Register = () => {
               label={
                 <span onClick={handleAgreementLinkClick}>
                   Please double click to agree to the{" "}
-                  <Link href="#" onClick={handleAgreementLinkClick}>
+                  <Link href="#" onClick={handleAgreementLinkClick}
+>
                     Connectify user agreement
                   </Link>
                   .
@@ -196,31 +204,34 @@ const Register = () => {
           <Button
             type="submit"
             variant="contained"
-            disabled={loading} 
+            disabled={loading}
             sx={{
               mt: 3,
               mb: 2,
               pl: 4,
               pr: 4,
-              backgroundColor: "#41D463",
-              "&:hover": { backgroundColor: "#2daa4a" 
-            },
+              backgroundColor: "#F2F2F2",
+              color: "#242424",
+              borderRadius: "1rem",
+              width: "8rem",
+              transition: "0.4s",
+              "&:hover": {
+                backgroundColor: "#537c87",
+                color: "white",
+              },
             }}
-            disabled={passwordError}
-            
           >
-            Sign Up
+            Sign up
           </Button>
 
           <Box container justifyContent="flex-end">
-            <Box>
-              <Link href="/login" variant="body2">
-                Already have an account? Sign in
-              </Link>
-            </Box>
-
-            <Box>
-              <Link href="#" variant="body2"></Link>
+          <Box>
+              <Typography variant="body2">
+                Already have an account?{" "}
+                <Link href="/login" color="primary">
+                  Sign in
+                </Link>
+              </Typography>
             </Box>
           </Box>
         </Box>
@@ -230,7 +241,7 @@ const Register = () => {
         open={openModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        sx={{ overflow: "scroll", pt: "2rem", pb: "2rem" }}
+        sx={{ overflow: "scroll", height:"90vh",m: "2rem 1rem" }}
       >
         <Box
           sx={{

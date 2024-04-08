@@ -50,11 +50,11 @@ const Settings = () => {
           >
             <Avatar sx={{ width: "6rem", height: "6rem" }} src={image}></Avatar>
             <Typography sx={{ color: "#1776d6", fontSize: "0.8rem" }}>
-              Edit
+              EDIT
             </Typography>
           </Box>
         </Box>
-
+        
         <Box sx={{ padding: "0.5rem" }}>
           <UpdateProfile handleToggle={handleToggle} openIndex={openIndex} />
           <FavoriteMessages handleToggle={handleToggle} openIndex={openIndex} />
@@ -64,8 +64,27 @@ const Settings = () => {
       </Box>
 
       <Box sx={logStyle}>
-        <Button onClick={logout}>
-          <LogoutRoundedIcon sx={{ fontSize: "1.5rem" }} />
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{
+            mt: 3,
+            mb: 2,
+            pl: 4,
+            pr: 4,
+            backgroundColor: "#F2F2F2",
+            color: "#242424",
+            borderRadius: "1rem",
+            width: "8rem",
+            transition: "0.4s",
+            "&:hover": {
+              backgroundColor: "#537c87",
+              color: "white",
+            },
+          }}
+          onClick={logout}
+        >
+          <LogoutRoundedIcon sx={{ fontSize: "1rem" }} />
           LOGOUT
         </Button>
       </Box>

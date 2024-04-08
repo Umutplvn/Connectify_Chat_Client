@@ -185,7 +185,7 @@ const IndexPage = () => {
             color: "#242424",
             borderRadius: "1rem",
             width: "5rem",
-            transition: "0.6s",
+            transition: "0.4s",
             "&:hover": {
               backgroundColor: "#537c87",
               color: "white",
@@ -202,7 +202,7 @@ const IndexPage = () => {
             color: "#242424",
             borderRadius: "1rem",
             width: "5rem",
-            transition: "0.6s",
+            transition: "0.4s",
             "&:hover": {
               backgroundColor: "#537c87",
               color: "white",

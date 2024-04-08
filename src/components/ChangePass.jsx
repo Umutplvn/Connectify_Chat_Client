@@ -63,8 +63,8 @@ const ChangePass = ({ handleToggle, openIndex }) => {
         title={
           <React.Fragment>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-              <KeyRoundedIcon sx={{ fontSize: "2rem", color: "black" }} />
-              <Typography sx={{ fontSize: "1.2rem" }}>
+              <KeyRoundedIcon sx={{ fontSize: "1.9rem", color: "black" }} />
+              <Typography sx={{ fontSize: "1rem" }}>
                 Change Password
               </Typography>
             </Box>

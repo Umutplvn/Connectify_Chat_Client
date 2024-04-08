@@ -57,7 +57,7 @@ export const statusStyle = {
 
 export const logStyle = {
   position: "fixed",
-  bottom: "7rem",
+  bottom: "5rem",
   width: "100%",
   display: "flex",
   justifyContent: "center",

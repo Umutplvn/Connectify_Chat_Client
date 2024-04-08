@@ -11,9 +11,9 @@ const EmailVerification = () => {
   const { deleteUser, update } = useAuthCall();
   const navigate = useNavigate();
   const [pass, setPass] = useState("");
-  const [expired, setExpired] = useState(false); // Süre dolup dolmadığını belirten durum
-  const [remainingTime, setRemainingTime] = useState(60); // Başlangıçta 60 saniye olarak ayarlandı
-
+  const [expired, setExpired] = useState(false); 
+  const [remainingTime, setRemainingTime] = useState(60); 
+  
   useEffect(() => {
 
     let timer;
@@ -117,11 +117,18 @@ const EmailVerification = () => {
               mb: 2,
               pl: 4,
               pr: 4,
-              backgroundColor: "#41D463",
-              "&:hover": { backgroundColor: "#2daa4a" },
+              backgroundColor: "#F2F2F2",
+              color: "#242424",
+              borderRadius: "1rem",
+              width: "8rem",
+              transition: "0.4s",
+              "&:hover": {
+                backgroundColor: "#537c87",
+                color: "white",
+              },
             }}
           >
-            Confirm
+            confirm
           </Button>
         </Box>
       </Box>

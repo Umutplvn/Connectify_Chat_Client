@@ -85,8 +85,8 @@ const UpdateProfile = ({ handleToggle, openIndex }) => {
         title={
           <React.Fragment>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-              <AccountCircleIcon sx={{ fontSize: "2rem", color: "#2A76D2" }} />
-              <Typography sx={{ fontSize: "1.2rem" }}>Account </Typography>
+              <AccountCircleIcon sx={{ fontSize: "1.9rem", color: "#2A76D2" }} />
+              <Typography sx={{ fontSize: "1rem" }}>Account </Typography>
             </Box>
           </React.Fragment>
         }
