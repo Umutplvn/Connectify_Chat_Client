@@ -49,7 +49,9 @@ const Settings = () => {
             onClick={handleOpen}
           >
             <Avatar sx={{ width: "6rem", height: "6rem" }} src={image}></Avatar>
-            <Typography sx={{ color: "#1776d6", fontSize: "0.8rem" }}>
+            <Typography sx={{ color: "#1776d6", fontSize: "0.8rem",  "&:hover": {
+              color: "#15599c", fontWeight:"700"
+            } }}>
               EDIT
             </Typography>
           </Box>
