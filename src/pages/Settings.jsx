@@ -50,7 +50,7 @@ const Settings = () => {
           >
             <Avatar sx={{ width: "6rem", height: "6rem" }} src={image}></Avatar>
             <Typography sx={{ color: "#1776d6", fontSize: "0.8rem",  "&:hover": {
-              color: "#15599c", fontWeight:"700"
+              color: "#15599c", fontWeight:"700", cursor:"pointer"
             } }}>
               EDIT
             </Typography>

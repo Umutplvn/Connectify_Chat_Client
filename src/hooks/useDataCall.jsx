@@ -15,35 +15,34 @@ import {
 } from "../features/appDataSlice";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
-import {io} from 'socket.io-client';
+import { io } from "socket.io-client";
 import { useEffect, useState } from "react";
-
 
 const useDataCall = () => {
   const { axiosWithToken } = useAxios();
   const dispatch = useDispatch();
   const { name, userId } = useSelector((state) => state?.auth);
   const [userData, setUserData] = useState({});
-  const [socket, setSocket] = useState(null)
-const [onlineUsers, setOnlineUsers] = useState([])
+  const [socket, setSocket] = useState(null);
+  const [onlineUsers, setOnlineUsers] = useState([]);
 
-//   //! socket.io
-//   useEffect(() => {
-//     const newSocket = io("http://localhost:8080");
-// setSocket(newSocket)
-//     return () => {
-//       newSocket.disconnect();
-//     };
-//   }, [userId]);
+  //   //! socket.io
+  //   useEffect(() => {
+  //     const newSocket = io("http://localhost:8080");
+  // setSocket(newSocket)
+  //     return () => {
+  //       newSocket.disconnect();
+  //     };
+  //   }, [userId]);
 
-//   useEffect(() => {
-//  if(socket==null) return
-//     socket.emit("addNewUser", userId)
-//     socket.on("getOnlineUsers", (res)=>{
-//       setOnlineUsers(res)
-//     })
-//   }, [socket])
-  
+  //   useEffect(() => {
+  //  if(socket==null) return
+  //     socket.emit("addNewUser", userId)
+  //     socket.on("getOnlineUsers", (res)=>{
+  //       setOnlineUsers(res)
+  //     })
+  //   }, [socket])
+
   //! Users
 
   const getUsers = async () => {
@@ -63,6 +62,18 @@ const [onlineUsers, setOnlineUsers] = useState([])
     try {
       const { data } = await axiosWithToken(`auth/users/${userId}`);
       dispatch(getProfileSuccess({ data }));
+    } catch (error) {
+      console.log(error);
+      dispatch(fetchFail());
+      toast(error);
+    }
+  };
+
+  const deleteUser = async (userId) => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axiosWithToken.delete(`auth/users/${userId}`);
+      getUsers();
     } catch (error) {
       console.log(error);
       dispatch(fetchFail());
@@ -160,7 +171,7 @@ const [onlineUsers, setOnlineUsers] = useState([])
   const getChats = async () => {
     dispatch(fetchStart());
     try {
-      const  {data}  = await axiosWithToken("chats/findall");
+      const { data } = await axiosWithToken("chats/findall");
       dispatch(getChatsSuccess({ data }));
     } catch (error) {
       console.log(error);
@@ -197,7 +208,7 @@ const [onlineUsers, setOnlineUsers] = useState([])
     dispatch(fetchStart());
     try {
       await axiosWithToken.put(`chats/readchat`, chatId);
-      getChats(chatId)
+      getChats(chatId);
     } catch (error) {
       console.log(error);
       dispatch(fetchFail());
@@ -282,7 +293,10 @@ const [onlineUsers, setOnlineUsers] = useState([])
   const removeFavMessage = async (messageId) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosWithToken.put(`messages/removefav`, messageId);
+      const { data } = await axiosWithToken.put(
+        `messages/removefav`,
+        messageId
+      );
       dispatch(favMessagesStateSuccess({ data }));
       toast("The message has been removed from favorites.");
     } catch (error) {
@@ -325,7 +339,8 @@ const [onlineUsers, setOnlineUsers] = useState([])
     deleteMessage,
     onlineUsers,
     readChatMessages,
-    removeFavMessage
+    removeFavMessage,
+    deleteUser
   };
 };
 

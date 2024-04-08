@@ -22,7 +22,9 @@ const ChangePass = ({ handleToggle, openIndex }) => {
   const [passCheck2, setPassCheck2] = useState("");
   const [visible, setVisible] = useState(true);
   const [visible2, setVisible2] = useState(true);
+
   const { passwordUpdate } = useAuthCall();
+
   const setPass = (e) => {
     e.preventDefault();
     setVisible(!visible);
@@ -42,7 +44,10 @@ const ChangePass = ({ handleToggle, openIndex }) => {
       passwordUpdate({ password: passCheck1 });
       setPassCheck1("")
       setPassCheck2("")
-      handleToggle(3)
+      setTimeout(() => {
+        handleToggle(3)
+      }, 1500);
+      
     }
   };
 
@@ -325,7 +330,19 @@ const ChangePass = ({ handleToggle, openIndex }) => {
                     </Box>
                   </Box>
                 )}
-                <Button type="submit" sx={btnGreen1} onClick={handleSubmit}>
+                <Button type="submit" 
+                 sx={{
+                  backgroundColor: "#9fa0a0",
+                  color: "white",
+                  borderRadius: "1rem",
+                  width: "5rem",
+                  transition: "0.4s",
+                  "&:hover": {
+                    backgroundColor: "#537c87",
+                    color: "white",
+                  },
+                }}
+                onClick={handleSubmit}>
                   SAVE
                 </Button>
               </Box>
