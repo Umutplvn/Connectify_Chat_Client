@@ -7,7 +7,7 @@ import Messages from "../components/Messages";
 import InputEmoji from "react-input-emoji";
 import useDataCall from "../hooks/useDataCall";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
-
+import usernone from "../assets/nouser.png"
 
 const Chat = () => {
   const { _id } = useParams();
@@ -83,7 +83,7 @@ const Chat = () => {
             <MdArrowBackIos />
           </Box>
 
-          <img src={user[0]?.image} alt="" style={style} />
+          <img src={user[0]?.image ? user[0]?.image : usernone} alt="" style={style} />
           <Box sx={{ display: "flex", flexDirection: "column" }}>
             <Typography>
               {user[0]?.name?.charAt(0).toUpperCase() +

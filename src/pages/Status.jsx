@@ -157,45 +157,10 @@ const Status = () => {
 
             }}
           >
-            {/* <Typography
-              sx={{
-                position: "absolute",
-                zIndex: "2",
-                fontSize: "4rem",
-                mt: "-1rem",
-                ml: "-8rem",
-              }}
-            >
-              🤣
-            </Typography>
-            <Typography
-              sx={{
-                position: "absolute",
-                zIndex: "0",
-                fontSize: "4rem",
-                mt: "1rem",
-                ml: "8rem",
-              }}
-            >
-              😍
-            </Typography>
-            <Typography
-              sx={{
-                position: "absolute",
-                zIndex: "0",
-                fontSize: "4rem",
-                mt: "7rem",
-                ml: "-5rem",
-                rotate: "-30deg",
-              }}
-            >
-              😜
-            </Typography> */}
+          
             <form flexDirection={"column"} onSubmit={handleSubmit}>
               <InputLabel htmlFor="file-upload" sx={{mt:"4rem"}} >
-                {/* <Typography sx={{ fontSize: "4rem", mt: "3rem" }}>
-                  📷
-                </Typography> */}
+              
                 <img src={clickIcon} alt="click" width={"60px"} />
                   
               </InputLabel>

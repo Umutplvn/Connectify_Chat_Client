@@ -92,7 +92,7 @@ const Notes = () => {
                 color: "#716868",
               }}
             >
-              {name?.charAt(0).toUpperCase()+name.slice(1).toLowerCase()}
+              {name?.charAt(0).toUpperCase()+name?.slice(1).toLowerCase()}
             </Typography>
           </Box>
         ) : (
@@ -167,7 +167,7 @@ const Notes = () => {
                 color: "#716868",
               }}
             >
-              {item?.userId?.name?.charAt(0).toUpperCase()+item?.userId?.name.slice(1).toLowerCase()}
+              {item?.userId?.name?.charAt(0)?.toUpperCase()+item?.userId?.name?.slice(1).toLowerCase()}
             </Typography>
           </Box>
         ))}

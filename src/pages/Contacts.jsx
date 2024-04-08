@@ -10,6 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { IoPersonRemoveSharp } from "react-icons/io5";
 import { addRemoveStyle } from "../styles/globalStyle";
 import FiberManualRecordRoundedIcon from '@mui/icons-material/FiberManualRecordRounded';
+import usernone from "../assets/nouser.png"
 
 const People = () => {
   const { contacts } = useSelector((state) => state?.auth);
@@ -146,7 +147,7 @@ const People = () => {
             key={item?._id}
           >
          <Box style={style} position={"relative"}>
-    <img src={item?.image} style={{width:"100%", height:"100%", borderRadius: "50%",
+    <img src={item?.image ? item?.image : usernone} style={{width:"100%", height:"100%", borderRadius: "50%",
 }} alt="PP" />
     <FiberManualRecordRoundedIcon sx={onlineUsers?.some((user)=>user?.userId===item._id) ? online : offline}/>
 </Box>
