@@ -60,17 +60,21 @@ const Chat = () => {
 
   return (
     <Box>
+      <Box sx={{mb:"6rem"}}>
+
       <Box
         sx={{
           padding: "1rem 0.5rem",
           fontSize: "24px",
+          width:"100%",
           fontWeight: "700",
           boxShadow: "rgba(17, 17, 26, 0.1) 0px 1px 0px ",
           backgroundColor: "#fdffff",
-          mb: "1rem",
+          position:"fixed", top:"0", zIndex:"3"
+
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1}}>
           <Box
             sx={{
               display: "flex",
@@ -99,6 +103,7 @@ const Chat = () => {
             </Typography>
           </Box>
         </Box>
+      </Box>
       </Box>
 
       {/* Messages */}
