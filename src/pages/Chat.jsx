@@ -8,6 +8,7 @@ import InputEmoji from "react-input-emoji";
 import useDataCall from "../hooks/useDataCall";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import usernone from "../assets/nouser.png"
+import InfoIcon from '@mui/icons-material/Info';
 
 const Chat = () => {
   const { _id } = useParams();
@@ -24,6 +25,7 @@ const Chat = () => {
     navigate(-1);
   };
 
+  console.log("user", user);
 
   useEffect(() => {
     const chatNumber = chats?.filter(
@@ -149,13 +151,25 @@ const Chat = () => {
           </Box>
         )}
 
-        <InputEmoji
-          value={text}
-          onChange={setText}
-          cleanOnEnter
-          onEnter={handleOnEnter}
-          placeholder="Type a message"
-        />
+
+{user[0]?.deleted ?
+
+<Box sx={{color:"red", display:'flex', justifyContent:"center", alignItems:"center", gap:1, borderRadius:"1rem", padding:"0.1rem", backgroundColor:"#fbebeb"}}>
+<InfoIcon/>
+  <Typography sx={{fontFamily:'sans-serif'}} >This user is no longer exist </Typography> 
+</Box>
+ :
+
+<InputEmoji 
+        value={text}
+        onChange={setText}
+        cleanOnEnter
+        onEnter={handleOnEnter}
+        placeholder="Type a message"
+      />
+      
+      }
+       
       </Box>
     </Box>
   );

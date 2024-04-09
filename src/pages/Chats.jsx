@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import useAuthCall from "../hooks/useAuthCall";
 import AccountMenu from "../components/ChatsMoreMenu";
 import FiberManualRecordRoundedIcon from "@mui/icons-material/FiberManualRecordRounded";
+import usernone from "../assets/nouser.png"
 
 const Chats = () => {
   const { getChats, clearMessagesState, onlineUsers, readChatMessages } =
@@ -164,7 +165,7 @@ const Chats = () => {
         >
           <Box style={style} position={"relative"}>
             <img
-              src={item?.user?.image}
+              src={item?.user?.image ? item?.user?.image : usernone}
               style={{ width: "100%", height: "100%", borderRadius: "50%" }}
               alt="PP"
             />
