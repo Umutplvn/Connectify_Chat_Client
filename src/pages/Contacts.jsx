@@ -13,6 +13,7 @@ import { addRemoveStyle } from "../styles/globalStyle";
 import FiberManualRecordRoundedIcon from "@mui/icons-material/FiberManualRecordRounded";
 import usernone from "../assets/nouser.png";
 import { toast } from "react-hot-toast";
+import SyncOutlinedIcon from "@mui/icons-material/SyncOutlined";
 
 const People = () => {
   const { contacts } = useSelector((state) => state?.auth);
@@ -24,6 +25,7 @@ const People = () => {
   const [contactId, setContactId] = useState("");
   const [check, setCheck] = useState(null);
   const [search, setSearch] = useState();
+  const [syncAnimation, setSyncAnimation] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
@@ -33,7 +35,6 @@ const People = () => {
     getMyContacts();
   }, []);
 
-  console.log("contacts", contacts);
 
   const handleSearch = (e) => {
     const searchKeyword = e.target.value.toLowerCase();
@@ -65,16 +66,21 @@ const People = () => {
   }, [contacts]);
 
   const forwardToChat = (item) => {
-    if(item?.deleted){
-      toast("This user is no longer exist.")
-    }else{
+    if (item?.deleted) {
+      toast("This user is no longer exist.");
+    } else {
       navigate(`/chat/${item?._id}`);
       createChat(item?._id);
     }
   };
 
   const contactsData = contacts?.map((item) => item?._id);
+  const sync = contacts?.filter((item) => item?.deleted == true);
 
+  const syncContacts=()=>{
+    setSyncAnimation(true)
+
+  }
   const style = {
     width: "50px",
     height: "50px",
@@ -114,6 +120,31 @@ const People = () => {
       >
         Contacts
       </Typography>
+
+      {/* //Sync Need */}
+      {sync?.length > 0 && (
+        <Box
+          sx={{
+            width: "2rem",
+            height: "2rem",
+            backgroundColor: "#267794",
+            position: "fixed",
+            top: "1rem",
+            right: "2rem",
+            color: "white",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: "50%",
+            transform: syncAnimation ? "rotate(-760deg)" : "rotate(0deg)",
+            transition:"3s"
+          }}
+          onClick={()=>syncContacts()}
+        >
+          <SyncOutlinedIcon />
+        </Box>
+      )}
+      
 
       {/* Search Box */}
       <Box
@@ -214,7 +245,7 @@ const People = () => {
                     size={27}
                     cursor={"pointer"}
                     sx={{
-                      color: "red",
+                      color: "#ce4444",
                       cursor: "pointer",
                       transition: "1s",
                     }}
