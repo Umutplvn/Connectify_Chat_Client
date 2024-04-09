@@ -19,7 +19,7 @@ const People = () => {
   const { contacts } = useSelector((state) => state?.auth);
   const { getMyContacts } = useAuthCall();
   const { getUsers, createChat, onlineUsers } = useDataCall();
-  const {syncContacts}=useAuthCall()
+  const { syncContacts } = useAuthCall();
   const [display, setDisplay] = useState([]);
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
@@ -35,7 +35,6 @@ const People = () => {
     getUsers();
     getMyContacts();
   }, []);
-
 
   const handleSearch = (e) => {
     const searchKeyword = e.target.value.toLowerCase();
@@ -68,7 +67,7 @@ const People = () => {
 
   const forwardToChat = (item) => {
     if (item?.deleted) {
-      toast("This user is no longer exist.");
+      toast("This user is no longer exist.Sync you contacts.");
     } else {
       navigate(`/chat/${item?._id}`);
       createChat(item?._id);
@@ -78,10 +77,11 @@ const People = () => {
   const contactsData = contacts?.map((item) => item?._id);
   const sync = contacts?.filter((item) => item?.deleted == true);
 
-  const syncContactsFunc=()=>{
-    setSyncAnimation(true)
-    syncContacts()
-  }
+  const syncContactsFunc = () => {
+    setSyncAnimation(true);
+    syncContacts();
+    toast("Syncing contacts. Please wait.");
+  };
   const style = {
     width: "50px",
     height: "50px",
@@ -138,14 +138,13 @@ const People = () => {
             alignItems: "center",
             borderRadius: "50%",
             transform: syncAnimation ? "rotate(-760deg)" : "rotate(0deg)",
-            transition:"3s"
+            transition: "3s",
           }}
-          onClick={()=>syncContactsFunc()}
+          onClick={() => syncContactsFunc()}
         >
           <SyncOutlinedIcon />
         </Box>
       )}
-      
 
       {/* Search Box */}
       <Box
@@ -243,9 +242,9 @@ const People = () => {
                 {item?.deleted ? (
                   <PersonOffIcon
                     onClick={() => toast("This user is no longer exist.")}
-                    size={27}
                     cursor={"pointer"}
                     sx={{
+                      fontSize: "2rem",
                       color: "#ce4444",
                       cursor: "pointer",
                       transition: "1s",
