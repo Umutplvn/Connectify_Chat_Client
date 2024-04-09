@@ -40,7 +40,7 @@ const useDataCall = () => {
     socket.on("getOnlineUsers", (res) => {
       setOnlineUsers(res);
     });
-  }, [socket]);
+  }, [socket, userId]);
 
 
   //! Users
