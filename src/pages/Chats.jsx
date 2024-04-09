@@ -11,7 +11,7 @@ import FiberManualRecordRoundedIcon from "@mui/icons-material/FiberManualRecordR
 import usernone from "../assets/nouser.png"
 
 const Chats = () => {
-  const { getChats, clearMessagesState, onlineUsers, readChatMessages } =
+  const { getChats, clearMessagesState, onlineUsers, readChatMessages, getUsers } =
     useDataCall();
   const { getMyContacts } = useAuthCall();
   const { chats } = useSelector((state) => state?.appData);
@@ -24,6 +24,7 @@ const Chats = () => {
   useEffect(() => {
     clearMessagesState();
     getChats();
+    getUsers()
     getMyContacts();
   }, []);
 

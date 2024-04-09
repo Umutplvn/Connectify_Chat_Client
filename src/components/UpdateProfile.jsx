@@ -454,6 +454,7 @@ const UpdateProfile = ({ handleToggle, openIndex }) => {
                     m: "0.5rem",
                     fontSize: "1rem",
                     fontWeight: "700",
+                    cursor:"pointer",
                     "&:hover": {
                       color: "red",
                     },

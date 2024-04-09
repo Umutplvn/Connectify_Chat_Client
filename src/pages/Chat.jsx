@@ -15,9 +15,9 @@ const Chat = () => {
   const [text, setText] = useState("");
   const [info, setInfo] = useState("");
   const { createMessages, clearMessagesState, onlineUsers, getMessages } = useDataCall();
-  const { chats } = useSelector((state) => state?.appData);
-  const { contacts, userId } = useSelector((state) => state?.auth);
-  const user = contacts?.filter((item) => item?._id == _id);
+  const { chats, users } = useSelector((state) => state?.appData);
+  const { userId } = useSelector((state) => state?.auth);
+  const user = users?.data?.result?.filter((item) => item?._id == _id);
   const navigate = useNavigate();
 
   const backFunc = () => {

@@ -142,7 +142,7 @@ const People = () => {
           }}
           onClick={() => syncContactsFunc()}
         >
-          <SyncOutlinedIcon />
+          <SyncOutlinedIcon sx={{cursor:"pointer"}} />
         </Box>
       )}
 
