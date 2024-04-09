@@ -19,6 +19,7 @@ const People = () => {
   const { contacts } = useSelector((state) => state?.auth);
   const { getMyContacts } = useAuthCall();
   const { getUsers, createChat, onlineUsers } = useDataCall();
+  const {syncContacts}=useAuthCall()
   const [display, setDisplay] = useState([]);
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
@@ -77,9 +78,9 @@ const People = () => {
   const contactsData = contacts?.map((item) => item?._id);
   const sync = contacts?.filter((item) => item?.deleted == true);
 
-  const syncContacts=()=>{
+  const syncContactsFunc=()=>{
     setSyncAnimation(true)
-
+    syncContacts()
   }
   const style = {
     width: "50px",
@@ -139,7 +140,7 @@ const People = () => {
             transform: syncAnimation ? "rotate(-760deg)" : "rotate(0deg)",
             transition:"3s"
           }}
-          onClick={()=>syncContacts()}
+          onClick={()=>syncContactsFunc()}
         >
           <SyncOutlinedIcon />
         </Box>

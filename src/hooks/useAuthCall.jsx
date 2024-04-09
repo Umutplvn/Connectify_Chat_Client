@@ -115,6 +115,17 @@ const useAuthCall = () => {
     }
   };
 
+  const syncContacts = async () => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axiosWithToken.get(`auth/users/synccontacts`);
+      dispatch(getMyContactsSuccess({ data }));
+    } catch (error) {
+      dispatch(fetchFail());
+      console.log(error);
+    }
+  };
+
   const addContact = async (contactId, name) => {
     dispatch(fetchStart());
     try {
@@ -174,7 +185,8 @@ const useAuthCall = () => {
     addContact,
     removeContact,
     getMyContacts,
-    passwordUpdate
+    passwordUpdate,
+    syncContacts
   };
 };
 
