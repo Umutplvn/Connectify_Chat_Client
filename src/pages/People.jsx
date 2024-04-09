@@ -15,7 +15,7 @@ import { IoMdPersonAdd } from "react-icons/io";
 
 const People = () => {
   const { users } = useSelector((state) => state?.appData);
-  const { contacts } = useSelector((state) => state?.auth);
+  const { contacts, userId } = useSelector((state) => state?.auth);
   const { getMyContacts } = useAuthCall();
   const { getUsers } = useDataCall();
   const [display, setDisplay] = useState([]);
@@ -41,8 +41,8 @@ const People = () => {
     } else {
       filteredData = users?.data?.result?.filter((item) => {
         return (
-          item?.username?.toLowerCase()?.includes(searchKeyword) ||
-          item?.name?.toLowerCase()?.includes(searchKeyword)
+         ( item?.username?.toLowerCase()?.includes(searchKeyword) ||
+          item?.name?.toLowerCase()?.includes(searchKeyword)) && item.verified==true && item._id!==userId
         );
       });
     }
