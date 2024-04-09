@@ -22,26 +22,26 @@ const useDataCall = () => {
   const { axiosWithToken } = useAxios();
   const dispatch = useDispatch();
   const { name, userId } = useSelector((state) => state?.auth);
-  const [userData, setUserData] = useState({});
   const [socket, setSocket] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
 
-  //   //! socket.io
-  //   useEffect(() => {
-  //     const newSocket = io("http://localhost:8080");
-  // setSocket(newSocket)
-  //     return () => {
-  //       newSocket.disconnect();
-  //     };
-  //   }, [userId]);
+  //! socket.io
+  useEffect(() => {
+    const newSocket = io("https://connectify-backend-14ug.onrender.com");
+    setSocket(newSocket);
+    return () => {
+      newSocket.disconnect();
+    };
+  }, [userId]);
 
-  //   useEffect(() => {
-  //  if(socket==null) return
-  //     socket.emit("addNewUser", userId)
-  //     socket.on("getOnlineUsers", (res)=>{
-  //       setOnlineUsers(res)
-  //     })
-  //   }, [socket])
+  useEffect(() => {
+    if (socket == null) return;
+    socket.emit("addNewUser", userId);
+    socket.on("getOnlineUsers", (res) => {
+      setOnlineUsers(res);
+    });
+  }, [socket]);
+
 
   //! Users
 
@@ -340,7 +340,7 @@ const useDataCall = () => {
     onlineUsers,
     readChatMessages,
     removeFavMessage,
-    deleteUser
+    deleteUser,
   };
 };
 

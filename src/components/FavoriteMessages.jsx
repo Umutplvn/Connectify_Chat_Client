@@ -29,7 +29,6 @@ const FavoriteMessages = ({ handleToggle, openIndex }) => {
   };
 
 
-  console.log("fav Mesagges", favMessages);
 
   return (
     <Card

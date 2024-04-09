@@ -75,7 +75,6 @@ const Status = () => {
   return (
     <Box>
       {/* Title */}
-      {/* Title */}
       <Typography
         sx={{
           padding: "1rem 0.5rem",

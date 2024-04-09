@@ -25,7 +25,6 @@ const Chat = () => {
     navigate(-1);
   };
 
-  console.log("user", user);
 
   useEffect(() => {
     const chatNumber = chats?.filter(
