@@ -7,14 +7,15 @@ import Messages from "../components/Messages";
 import InputEmoji from "react-input-emoji";
 import useDataCall from "../hooks/useDataCall";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
-import usernone from "../assets/nouser.png"
-import InfoIcon from '@mui/icons-material/Info';
+import usernone from "../assets/nouser.png";
+import InfoIcon from "@mui/icons-material/Info";
 
 const Chat = () => {
   const { _id } = useParams();
   const [text, setText] = useState("");
   const [info, setInfo] = useState("");
-  const { createMessages, clearMessagesState, onlineUsers, getMessages } = useDataCall();
+  const { createMessages, clearMessagesState, onlineUsers, getMessages } =
+    useDataCall();
   const { chats, users } = useSelector((state) => state?.appData);
   const { userId } = useSelector((state) => state?.auth);
   const user = users?.data?.result?.filter((item) => item?._id == _id);
@@ -25,23 +26,26 @@ const Chat = () => {
     navigate(-1);
   };
 
-
   useEffect(() => {
     const chatNumber = chats?.filter(
-      (item) => item?.chat?.members?.includes(userId) && item?.chat?.members?.includes(_id)
+      (item) =>
+        item?.chat?.members?.includes(userId) &&
+        item?.chat?.members?.includes(_id)
     );
     if (chatNumber) {
-      getMessages(chatNumber[0]?.chat?._id)
+      getMessages(chatNumber[0]?.chat?._id);
     }
   }, []);
 
   const handleOnEnter = (text) => {
     const chatNumber = chats?.filter(
-      (item) =>item?.chat?.members?.includes(userId) && item?.chat?.members?.includes(_id)
-      );
+      (item) =>
+        item?.chat?.members?.includes(userId) &&
+        item?.chat?.members?.includes(_id)
+    );
     if (text.trim() !== "") {
-      if (info.chatId) {
-        createMessages({ chatId: info.chatId, messageId: info?._id, text });
+      if (info?.chatId) {
+        createMessages({ chatId: info?.chatId, messageId: info?._id, text });
         setInfo("");
       } else {
         createMessages({ chatId: chatNumber[0]?.chat?._id, text: text });
@@ -60,50 +64,58 @@ const Chat = () => {
 
   return (
     <Box>
-      <Box sx={{mb:"6rem"}}>
-
-      <Box
-        sx={{
-          padding: "1rem 0.5rem",
-          fontSize: "24px",
-          width:"100%",
-          fontWeight: "700",
-          boxShadow: "rgba(17, 17, 26, 0.1) 0px 1px 0px ",
-          backgroundColor: "#fdffff",
-          position:"fixed", top:"0", zIndex:"3"
-
-        }}
-      >
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1}}>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              width: "2rem",
-              cursor: "pointer",
-            }}
-            onClick={backFunc}
-          >
-            <MdArrowBackIos />
-          </Box>
-
-          <img src={user[0]?.image ? user[0]?.image : usernone} alt="" style={style} />
-          <Box sx={{ display: "flex", flexDirection: "column" }}>
-            <Typography>
-              {user[0]?.name?.charAt(0).toUpperCase() +
-                user[0]?.name?.slice(1).toLowerCase()}
-            </Typography>
-            <Typography
-              sx={{ fontSize: "0.7rem", fontStyle: "italic", color: "#939292" }}
+      <Box sx={{ mb: "6rem" }}>
+        <Box
+          sx={{
+            padding: "1rem 0.5rem",
+            fontSize: "24px",
+            width: "100%",
+            fontWeight: "700",
+            boxShadow: "rgba(17, 17, 26, 0.1) 0px 1px 0px ",
+            backgroundColor: "#fdffff",
+            position: "fixed",
+            top: "0",
+            zIndex: "3",
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "2rem",
+                cursor: "pointer",
+              }}
+              onClick={backFunc}
             >
-              {onlineUsers?.some((user) => user?.userId == _id)
-                ? "Online"
-                : "Offline"}
-            </Typography>
+              <MdArrowBackIos />
+            </Box>
+
+            <img
+              src={user[0]?.image ? user[0]?.image : usernone}
+              alt=""
+              style={style}
+            />
+            <Box sx={{ display: "flex", flexDirection: "column" }}>
+              <Typography>
+                {user[0]?.name?.charAt(0).toUpperCase() +
+                  user[0]?.name?.slice(1).toLowerCase()}
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: "0.7rem",
+                  fontStyle: "italic",
+                  color: "#939292",
+                }}
+              >
+                {onlineUsers?.some((user) => user?.userId == _id)
+                  ? "Online"
+                  : "Offline"}
+              </Typography>
+            </Box>
           </Box>
         </Box>
-      </Box>
       </Box>
 
       {/* Messages */}
@@ -155,25 +167,35 @@ const Chat = () => {
           </Box>
         )}
 
-
-{user[0]?.deleted ?
-
-<Box sx={{color:"red", display:'flex', justifyContent:"center", alignItems:"center", gap:1, borderRadius:"1rem", padding:"0.1rem", backgroundColor:"#fbebeb"}}>
-<InfoIcon/>
-  <Typography sx={{fontFamily:'sans-serif'}} >This user is no longer exist </Typography> 
-</Box>
- :
-
-<InputEmoji 
-        value={text}
-        onChange={setText}
-        cleanOnEnter
-        onEnter={handleOnEnter}
-        placeholder="Type a message"
-      />
-      
-      }
-       
+        {user[0]?.deleted ? (
+          <Box
+            sx={{
+              color: "red",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 1,
+              borderRadius: "1rem",
+              padding: "0.1rem",
+              backgroundColor: "#fbebeb",
+            }}
+          >
+            <InfoIcon />
+            <Typography sx={{ fontFamily: "sans-serif" }}>
+              This user is no longer exist{" "}
+            </Typography>
+          </Box>
+        ) : (
+          <Box sx={{ width: "100%", padding: "0.5rem" }}>
+            <InputEmoji
+              value={text}
+              onChange={setText}
+              cleanOnEnter
+              onEnter={handleOnEnter}
+              placeholder="Type a message"
+            />
+          </Box>
+        )}
       </Box>
     </Box>
   );
