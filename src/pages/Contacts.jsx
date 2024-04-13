@@ -36,6 +36,8 @@ const People = () => {
     getMyContacts();
   }, []);
 
+  console.log("contac", contacts);
+
   const handleSearch = (e) => {
     const searchKeyword = e.target.value.toLowerCase();
     let filteredData;

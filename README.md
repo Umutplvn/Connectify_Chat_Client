@@ -1,6 +1,7 @@
 # Connectif Chat App
 
 Connectify is an interactive social networking platform that enables users to connect with each other, share various photos and notes in a story format. This platform facilitates users to strengthen their connections and engage in meaningful interactions. Users can create original content, view other users' shares, and interact with them. Connectify enhances social interaction by allowing individuals to establish real connections and share experiences in the virtual world.
+
 # Starting the App
 
 ## 1. Sign up
@@ -48,3 +49,4 @@ Connectify is an interactive social networking platform that enables users to co
 ## 7. Status
 <p>You can share notes and stories from this page and view those of your friends. Don't forget, shared stories and notes will disappear after 24 hours.   </p>
 <img src="images/Screenshot 2024-04-13 at 02.01.44.png" alt="Açıklama" width="200" height="400">
+
