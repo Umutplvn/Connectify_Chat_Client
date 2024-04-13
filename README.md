@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# Connectif Chat App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Connectify is an interactive social networking platform that enables users to connect with each other, share various photos and notes in a story format. This platform facilitates users to strengthen their connections and engage in meaningful interactions. Users can create original content, view other users' shares, and interact with them. Connectify enhances social interaction by allowing individuals to establish real connections and share experiences in the virtual world.
+# Starting the App
 
-## Available Scripts
+## 1. Sign up
 
-In the project directory, you can run:
+<p> a. Fill the required information and create a powerfull password.  </p>
+<img src="images/Screenshot 2024-04-13 at 01.20.25.png" alt="Açıklama" width="200" height="400">
 
-### `yarn start`
+<br>
+<p> b. Confirm your account by entering the code sent to your email before the time expires.  </p>
+<img src="images/Screenshot 2024-04-13 at 01.20.52.png" alt="Açıklama" width="200" height="400">
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<br>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 2. Settings
+<p> Update your profile picture from the Settings section, and proceed to the Account tab to update your name, username, and bio. Also you can see your favorite messages here and do a lot more.  </p>
+<img src="images/Screenshot 2024-04-13 at 01.34.18.png" alt="Açıklama" width="200" height="400">
 
-### `yarn test`
+<br>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 3. Add People to Your Contacts
+<p> Search users from the the People section and add them to your contacts to start a new chat.  </p>
+<img src="images/Screenshot 2024-04-13 at 01.40.20.png" alt="Açıklama" width="200" height="400">
 
-### `yarn build`
+<br>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 4. Contacts
+<p> You will see a green dot on top of your friends who are online. Choose one of your friends to start a new chat!  </p>
+<img src="images/Screenshot 2024-04-13 at 01.45.23.png" alt="Açıklama" width="200" height="400">
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br>
 
-### `yarn eject`
+## 5. Chat
+<p>Send a message, add a message to your favorites, add a reaction, reply to a specific message, delete your message!  </p>
+<img src="images/Screenshot 2024-04-13 at 01.51.08.png" alt="Açıklama" width="200" height="400">
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<br>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 6. Chats
+<p>You can view all chats and unread message notifications from the chats page, and you can delete whichever ones you want.  </p>
+<img src="images/Screenshot 2024-04-13 at 01.57.59.png" alt="Açıklama" width="200" height="400">
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<br>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 7. Status
+<p>You can share notes and stories from this page and view those of your friends. Don't forget, shared stories and notes will disappear after 24 hours.   </p>
+<img src="images/Screenshot 2024-04-13 at 02.01.44.png" alt="Açıklama" width="200" height="400">
