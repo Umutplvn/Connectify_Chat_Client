@@ -53,4 +53,6 @@
 ## 7. Status
 <p>You can share notes and stories from this page and view those of your friends. Don't forget, shared stories and notes will disappear after 24 hours.   </p>
 <img src="images/Screenshot 2024-04-13 at 02.01.44.png" alt="Açıklama" width="200" height="400">
-
+ 
+ <br>
+<h3 style="text-align: center; color:red">To discover more, sign up to the app and never hesitate to contact with me.</h3>
