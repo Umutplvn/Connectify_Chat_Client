@@ -2,6 +2,11 @@
 <p> Connectify is an interactive social networking platform that enables users to connect with each other, share various photos and notes in a story format. This platform facilitates users to strengthen their connections and engage in meaningful interactions. Users can create original content, view other users' shares, and interact with them. Connectify enhances social interaction by allowing individuals to establish real connections and share experiences in the virtual world.  </p>
 <br>
 
+<p style="font-weight: 800; color:red"> You can use the login details below to have a quick look:</p>
+<p>Email: connectifychatapp@gmail.com </p>
+<p>Password: 12345678</p>
+
+
 <img src="images/Screenshot 2024-04-13 at 02.21.42.png" alt="Açıklama" width="200" height="400">
 
 <br>

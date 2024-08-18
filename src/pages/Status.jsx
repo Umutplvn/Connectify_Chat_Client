@@ -101,6 +101,7 @@ const Status = () => {
             mb: "5rem",
             backgroundColor: "white",
             justifyContent: "flex-start", // Eğer myStory varsa sola yasla, yoksa ortala
+
           }}
         >
           {/* Photo */}
@@ -113,6 +114,7 @@ const Status = () => {
                 position: "relative",
                 boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;",
                 borderRadius: "1rem",
+                maxWidth:"280px"
               }}
             >
               <CancelIcon
