@@ -47,7 +47,6 @@ const Status = () => {
       console.error("Error handling file upload:", error);
     }
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     createStory(postImage);
@@ -100,7 +99,7 @@ const Status = () => {
             gap: 4,
             mb: "5rem",
             backgroundColor: "white",
-            justifyContent: "flex-start", // Eğer myStory varsa sola yasla, yoksa ortala
+            justifyContent: "flex-start", 
 
           }}
         >
@@ -114,7 +113,7 @@ const Status = () => {
                 position: "relative",
                 boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;",
                 borderRadius: "1rem",
-                maxWidth:"280px"
+                maxWidth:"230px",
               }}
             >
               <CancelIcon
@@ -134,8 +133,9 @@ const Status = () => {
                 src={myStory?.content || usernone}
                 alt="myStory"
                 width={"100%"}
+            
                 height={"100%"}
-                style={{ borderRadius: "1rem" }}
+                style={{ borderRadius: "1rem"}}
               />
 
               <Avatar
@@ -151,6 +151,7 @@ const Status = () => {
               sx={{
                 flex: "0 0 45%",
                 height: "15rem",
+                maxWidth:"13rem",
                 position: "relative",
                 display: "flex",
                 justifyContent: "center",

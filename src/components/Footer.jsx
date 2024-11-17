@@ -70,7 +70,7 @@ const Footer = () => {
         fontSize: "12px",
       }}
     >
-      {data.map((item)=>{
+      {data?.map((item)=>{
         return(
      <Link
      to={item.to}
