@@ -60,4 +60,15 @@
 <img src="images/Screenshot 2024-04-13 at 02.01.44.png" alt="Açıklama" width="200" height="400">
  
  <br>
-<h3 style="text-align: center; color:red">To discover more, sign up to the app and never hesitate to contact with me.</h3>
+<hr/>
+<p style="text-align: center;">Feel free to contact me for future projects:</p>
+<div style="text-align: center; width:100%, display:flex; justify-content:center">
+  <p style="display: flex; justify-content: center; gap: 2rem;">
+    <a href="https://www.linkedin.com/in/umutpehlivan/" target="_blank">
+      <img src="https://banner2.cleanpng.com/20180406/jpq/avgi8oddr.webp" alt="LinkedIn" style="width: 30px;" />
+    </a>
+    <a href="mailto:umutpehlivan2078@gmail.com" target="_blank">
+      <img src="https://banner2.cleanpng.com/20180406/ezq/avgd52azx.webp" alt="Email" style="width: 30px;" />
+    </a>
+  </p>
+</div>
