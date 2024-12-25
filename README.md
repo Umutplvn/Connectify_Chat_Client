@@ -1,4 +1,4 @@
-# Connectif Chat App
+# Connectif Chat App - A Fullstack Project
 <p> Connectify is an interactive social networking platform that enables users to connect with each other, share various photos and notes in a story format. This platform facilitates users to strengthen their connections and engage in meaningful interactions. Users can create original content, view other users' shares, and interact with them. Connectify enhances social interaction by allowing individuals to establish real connections and share experiences in the virtual world.  </p>
 <br>
 
